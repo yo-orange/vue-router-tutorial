@@ -1,0 +1,4 @@
+# install
+```
+vue add router
+```

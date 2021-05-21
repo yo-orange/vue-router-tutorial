@@ -19,7 +19,24 @@ const routes = [
   {
     path: '/users/:id',
     name: 'Users',
-    component: () => import(/* webpackChunkName: "users" */ '../views/Users.vue')
+    component: () => import(/* webpackChunkName: "users" */ '../views/Users.vue'),
+    children: [
+      {
+        path: '',
+        name: 'UsersTop',
+        component: () => import(/* webpackChunkName: "usersTop" */ '../views/UsersTop.vue'),
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import(/* webpackChunkName: "usersProfile" */ '../views/UsersProfile.vue'),
+      },
+      {
+        path: 'posts',
+        name: 'Posts',
+        component: () => import(/* webpackChunkName: "usersPosts" */ '../views/UsersPosts.vue'),
+      }
+    ]
   },
   {
     path: "/:pathMatch(.*)*",

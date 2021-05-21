@@ -3,9 +3,9 @@
 <template>
   <div class="users">
     <div id="nav">
-      <router-link :to="{name: 'UsersTop', params: {id: $route.params.id }}" >Top</router-link> | 
-      <router-link :to="{name: 'Profile', params: {id: $route.params.id }}" >Profile</router-link> | 
-      <router-link :to="{name: 'Posts', params: {id: $route.params.id }}" >Posts</router-link>
+      <router-link :to="{name: 'UsersTop', params: {id: id }}" >Top</router-link> | 
+      <router-link :to="{name: 'Profile', params: {id: id }}" >Profile</router-link> | 
+      <router-link :to="{name: 'Posts', params: {id: id }}" >Posts</router-link>
     </div>
     <router-view />
   </div>
@@ -14,6 +14,11 @@
 <script>
 export default {
   name: "Users",
+  props: {
+    id: {
+      type: Number
+    }
+  },
   beforeRouteUpdate(to, from, next) {
     console.log(from);
     console.log(to);

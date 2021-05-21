@@ -39,6 +39,35 @@ const routes = [
     ]
   },
   {
+    path: '/settings',
+    name: 'UserSettings',
+    component: () => import(/* webpackChunkName: "about" */ '../views/NestedNamed/UserSettings.vue'),
+    children: [
+      {
+        path: '',
+        name: 'UserSettingsTop',
+        components: {
+          default: () => import(/* webpackChunkName: "usersTop" */ '../views/NestedNamed/UserEmailsSubscriptions.vue'),
+        }
+      },
+      {
+        path: 'emails',
+        name: 'UserEmailsSubscriptions',
+        components: {
+          default: () => import(/* webpackChunkName: "usersTop" */ '../views/NestedNamed/UserEmailsSubscriptions.vue'),
+        }
+      },
+      {
+        path: 'profile',
+        name: 'UserProfile',
+        components: {
+          default: () => import(/* webpackChunkName: "usersTop" */ '../views/NestedNamed/UserProfile.vue'),
+          helper: () => import(/* webpackChunkName: "usersTop" */ '../views/NestedNamed/UserProfilePreview.vue')
+        }
+      },
+    ]
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: 'NotFound',
     component: NotFound,

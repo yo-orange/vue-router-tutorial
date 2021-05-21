@@ -4,7 +4,8 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/users/1">User:1</router-link> |
     <router-link to="/users/2">User:2</router-link> |
-    <router-link to="/settings">UserSettings</router-link>
+    <router-link to="/settings">UserSettings</router-link> | 
+    <router-link to="/redirect/users/1">Redirect User</router-link>
   </div>
   <router-view />
 </template>

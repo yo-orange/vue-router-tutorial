@@ -29,6 +29,7 @@ const routes = [
     path: '/users/:id',
     name: 'Users',
     component: () => import(/* webpackChunkName: "users" */ '../views/Users.vue'),
+    props: true,
     children: [
       {
         path: '',
@@ -44,6 +45,7 @@ const routes = [
         path: 'posts',
         name: 'Posts',
         component: () => import(/* webpackChunkName: "usersPosts" */ '../views/UsersPosts.vue'),
+        props: route => ({ id: route.params.id, title: '投稿' })
       }
     ]
   },

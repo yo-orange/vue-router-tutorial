@@ -3,19 +3,15 @@
 <template>
   <div class="users">
     <div id="nav">
-      <router-link :to="{ name: 'UsersTop', params: { id: id } }"
-        >Top</router-link
-      >
-      |
-      <router-link :to="{ name: 'Profile', params: { id: id } }"
-        >Profile</router-link
-      >
-      |
-      <router-link :to="{ name: 'Posts', params: { id: id } }"
-        >Posts</router-link
-      >
+      <router-link :to="{ name: 'UsersTop', params: { id: id } }">Top</router-link> |
+      <router-link :to="{ name: 'Profile', params: { id: id } }">Profile</router-link> | 
+      <router-link :to="{ name: 'Posts', params: { id: id } }">Posts</router-link>
     </div>
-    <router-view />
+    <router-view class="child-view" v-slot="{ Component }">
+      <transition :name="transitionName">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -26,6 +22,11 @@ export default {
     id: {
       type: String,
     },
+  },
+  data() {
+    return {
+      transitionName: 'slide-left'
+    }
   },
   beforeRouteEnter(to, from, next) { // eslint-disable-line
     // このコンポーネントを描画するルートが確立する前に呼ばれます。
@@ -41,6 +42,9 @@ export default {
     // 同じ `Foo` コンポーネントインスタンスが再利用され、そのときにこのフックが呼び出されます。
     // `this` でコンポーネントインスタンスにアクセスできます。
     console.log("component:beforeRouteUpdate");
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
     next();
   },
   beforeRouteLeave(to, from, next) { // eslint-disable-line
@@ -53,3 +57,27 @@ export default {
   setup() {},
 };
 </script>
+
+<!-- https://github.com/vuejs/vue-router/blob/dev/examples/transitions/index.html -->
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .75s ease;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+.child-view {
+  position: absolute;
+  transition: all .75s cubic-bezier(.55,0,.1,1);
+}
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(30px, 0);
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+}
+</style>

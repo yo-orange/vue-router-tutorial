@@ -24,7 +24,7 @@ export default {
   name: "Users",
   props: {
     id: {
-      type: Number,
+      type: String,
     },
   },
   beforeRouteEnter(to, from, next) { // eslint-disable-line

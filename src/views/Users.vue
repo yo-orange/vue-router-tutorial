@@ -3,9 +3,17 @@
 <template>
   <div class="users">
     <div id="nav">
-      <router-link :to="{name: 'UsersTop', params: {id: id }}" >Top</router-link> | 
-      <router-link :to="{name: 'Profile', params: {id: id }}" >Profile</router-link> | 
-      <router-link :to="{name: 'Posts', params: {id: id }}" >Posts</router-link>
+      <router-link :to="{ name: 'UsersTop', params: { id: id } }"
+        >Top</router-link
+      >
+      |
+      <router-link :to="{ name: 'Profile', params: { id: id } }"
+        >Profile</router-link
+      >
+      |
+      <router-link :to="{ name: 'Posts', params: { id: id } }"
+        >Posts</router-link
+      >
     </div>
     <router-view />
   </div>
@@ -16,12 +24,30 @@ export default {
   name: "Users",
   props: {
     id: {
-      type: Number
-    }
+      type: Number,
+    },
   },
-  beforeRouteUpdate(to, from, next) {
-    console.log(from);
-    console.log(to);
+  beforeRouteEnter(to, from, next) { // eslint-disable-line
+    // このコンポーネントを描画するルートが確立する前に呼ばれます。
+    // `this` でのこのコンポーネントへのアクセスはできません。
+    // なぜならばこのガードが呼び出される時にまだ作られていないからです!
+    console.log("component:beforeRouteEnter");
+    next();
+  },
+  beforeRouteUpdate(to, from, next) { // eslint-disable-line
+    // このコンポーネントを描画するルートが変更されたときに呼び出されますが、
+    // このコンポーネントは新しいルートで再利用されます。
+    // たとえば、動的な引数 `/foo/:id` を持つルートの場合、`/foo/1` と `/foo/2` の間を移動すると、
+    // 同じ `Foo` コンポーネントインスタンスが再利用され、そのときにこのフックが呼び出されます。
+    // `this` でコンポーネントインスタンスにアクセスできます。
+    console.log("component:beforeRouteUpdate");
+    next();
+  },
+  beforeRouteLeave(to, from, next) { // eslint-disable-line
+    // このコンポーネントを描画するルートが間もなく
+    // ナビゲーションから離れていく時に呼ばれます。
+    // `this` でのコンポーネントインスタンスへのアクセスができます。
+    console.log("component:beforeRouteLeave");
     next();
   },
   setup() {},

@@ -18,6 +18,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/zipcode',
+    name: 'ZipCode',
+    component: () => import(/* webpackChunkName: "zipcode" */ '../views/ZipCode.vue')
+  },
+  {
     path: '/redirect/users/:id',
     redirect: to => {
       // https://github.com/vuejs/vue-router/blob/dev/examples/redirect/app.js#L35

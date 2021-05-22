@@ -53,6 +53,7 @@ const routes = [
     path: '/settings',
     name: 'UserSettings',
     component: () => import(/* webpackChunkName: "about" */ '../views/NestedNamed/UserSettings.vue'),
+    meta: { requiresAuth: true },
     children: [
       {
         path: '',
@@ -93,7 +94,12 @@ const router = createRouter({
 // https://router.vuejs.org/ja/api/#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%88%E3%82%99
 router.beforeEach((to, from, next) => { // eslint-disable-line
   console.log("global:beforeEach")
-  next()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    console.log("requiresAuth is true.")
+    next()
+  } else {
+    next()
+  }
 })
 
 router.beforeResolve((to, from, next) => { // eslint-disable-line

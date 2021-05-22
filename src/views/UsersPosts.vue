@@ -11,7 +11,7 @@ export default {
   name: "UsersPosts",
   props: {
     id: {
-      type: Number,
+      type: String,
     },
     title: { type: String },
   },

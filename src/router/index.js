@@ -90,4 +90,19 @@ const router = createRouter({
   routes
 })
 
+// https://router.vuejs.org/ja/api/#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%88%E3%82%99
+router.beforeEach((to, from, next) => { // eslint-disable-line
+  console.log("global:beforeEach")
+  next()
+})
+
+router.beforeResolve((to, from, next) => { // eslint-disable-line
+  console.log("global:beforeResolve")
+  next()
+})
+
+router.afterEach((to, from) => { // eslint-disable-line
+  console.log("global:afterEach")
+})
+
 export default router

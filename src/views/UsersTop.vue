@@ -3,6 +3,18 @@
 <template>
   <div class="users">
     <h1>This is User Top Page</h1>
-    <div>User ID: {{ $route.params.id }}</div>
+    <div>User ID: {{ id }}</div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "UsersTop",
+  props: {
+    id: {
+      type: String,
+    },
+  },
+  setup() {},
+};
+</script>

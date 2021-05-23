@@ -12,24 +12,30 @@ import UsersTop from '@/views/UsersTop.vue'
 describe('UsersTop.vue', () => {
   it('renders route.params.id is String when passed', () => {
     const wrapper = shallowMount(UsersTop, {
-      global: {
-        mocks: {
-          $route: {
-            params: { id: 'foo' }
-          }
-        }
+      // global: {
+      //   mocks: {
+      //     $route: {
+      //       params: { id: 'foo' }
+      //     }
+      //   }
+      // }
+      propsData: {
+        id: 'foo'
       }
     })
     expect(wrapper.text()).toMatch("This is User Top PageUser ID: foo")
   })
   it('renders route.params.id is Number when passed', () => {
     const wrapper = shallowMount(UsersTop, {
-      global: {
-        mocks: {
-          $route: {
-            params: { id: 1 }
-          }
-        }
+      // global: {
+      //   mocks: {
+      //     $route: {
+      //       params: { id: 1 }
+      //     }
+      //   }
+      // }
+      propsData: {
+        id: 1
       }
     })
     expect(wrapper.text()).toMatch("This is User Top PageUser ID: 1")

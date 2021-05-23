@@ -40,11 +40,13 @@ const routes = [
         path: '',
         name: 'UsersTop',
         component: () => import(/* webpackChunkName: "usersTop" */ '../views/UsersTop.vue'),
+        props: true,
       },
       {
         path: 'profile',
         name: 'Profile',
         component: () => import(/* webpackChunkName: "usersProfile" */ '../views/UsersProfile.vue'),
+        props: true,
       },
       {
         path: 'posts',

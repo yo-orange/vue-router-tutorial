@@ -21,3 +21,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# e2e failure video, screenshots
+/tests/e2e/videos
+/tests/e2e/screenshots

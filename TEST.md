@@ -45,8 +45,11 @@ npm run test:unit
 
 ## cypress
 - https://cli.vuejs.org/core-plugins/e2e-cypress.html#injected-commands
+- https://www.npmjs.com/package/cypress-xpath
+
 ```bash
 npm install cypress
+npm install -D cypress-xpath
 ./node_modules/.bin/cypress install
 # node_modules\.bin\cypress open
 vue add e2e-cypress

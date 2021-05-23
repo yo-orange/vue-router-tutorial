@@ -39,7 +39,6 @@ export default {
       this.axios
         .get("https://api.coindesk.com/v1/bpi/currentprice.json")
         .then((response) => {
-          console.log("axios");
           this.info = response;
         })
         .catch((error) => {
